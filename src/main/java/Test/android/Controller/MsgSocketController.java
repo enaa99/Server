@@ -19,7 +19,7 @@ import java.util.HashMap;
 
 @Slf4j
 @RestController
-public class MsgSocketHandler extends TextWebSocketHandler {
+public class MsgSocketController extends TextWebSocketHandler {
 
     HashMap<String, WebSocketSession> sessionMap = new HashMap<>(); //웹소켓 세션을 담아둘 맵
 
@@ -58,7 +58,7 @@ public class MsgSocketHandler extends TextWebSocketHandler {
 
                 }
                 else {
-                    td.setData("user if not online");
+                    td.setData("user is not online");
                     String json = mapper.writeValueAsString(td);
                     sessionMap.get(target).sendMessage(new TextMessage(json));
 
@@ -128,7 +128,8 @@ public class MsgSocketHandler extends TextWebSocketHandler {
 
     }
 
-    @SuppressWarnings("unchecked")
+
+
     @Override
     public void afterConnectionEstablished(WebSocketSession session) throws Exception {
         super.afterConnectionEstablished(session);
